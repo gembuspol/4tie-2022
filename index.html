@@ -13,7 +13,7 @@
     <div class="container">
         <p>
             Podaj ilość znaków
-            <input type="number" min="8" id="iloscZnakow">
+            <input type="number" min="8" id="iloscZnakow" oninput="iloscZnakow()">
         </p>
         <p>
             Podaj ilośc dużych liter
@@ -25,7 +25,8 @@
             <input type="range" value="0" min="0" max="20" id="iloscMaleL" oninput="wybieranieMaleL()">
             <output id="wybMaleL"></output>
         </p>
-
+        <p><button id="genHaslo" onclick="generujHaslo()">Generuj hasło</button></p>
+        <p>Wygenrowane hasło: <output id="haslo"></output></p>
     </div>
 </body>
 </html>
