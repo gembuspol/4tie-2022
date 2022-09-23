@@ -21,3 +21,30 @@ function iloscZnakow(){
     iloscZn=document.getElementById("iloscZnakow").value;
     ustawWolne()
 }
+function generujHaslo(){
+    let haslo="";
+    const alfabetMale="abcdefghijhklmnoprstuvwxyz";
+    const alfabetDuze='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+    //losowanie malych liter
+    for(let i=0;i<iloscMaleL;i++){
+        haslo+=alfabetMale.charAt(Math.floor(Math.random()*alfabetMale.length));
+    }
+    //losowanie duzych liter
+    for(let i=0;i<iloscDuzeL;i++){
+        haslo+=alfabetDuze[Math.floor(Math.random()*alfabetDuze.length)];
+    }
+   // let dane=zmianaKolejnosci(haslo);
+    document.getElementById("haslo").value=zmianaKolejnosci(haslo);
+}
+function zmianaKolejnosci(haslo){
+    let wynik=haslo.split('');
+    for(let i=0;i<wynik.length;i++){
+        let los=Math.floor(Math.random()*wynik.length);
+        let tmp=wynik[i];
+        wynik[i]=wynik[los];
+        wynik[los]=tmp;
+    }
+    haslo=wynik.join('');
+    return haslo;
+}
