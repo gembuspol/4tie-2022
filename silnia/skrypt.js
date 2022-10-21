@@ -8,3 +8,20 @@ function obliczSilnia(){
     }
     document.getElementById("wynik").value=silnia;
 }
+function silnia(n){
+    let wynik=1;
+    if(n!=1){
+        wynik=silnia(n-1)*n;
+    }
+    return wynik;
+}
+function obliczSilniaRekurencyjnie(){
+    let n=document.getElementById("liczbaN").value;
+    let wynik=1;
+    if (n==1){
+        document.getElementById("wynikRekurencja").value=wynik;
+    }else{
+        wynik=silnia(n-1)*n;
+        document.getElementById("wynikRekurencja").value=wynik;
+    }
+}
