@@ -11,3 +11,19 @@ function oblicz(){
     }
     document.getElementById("wynik").value=wynik;
 }
+function czyPodzielnaPrzez3(a){
+    let wynik="NIE";
+    let sumaCyfr=0;
+    while(a>=1){
+        sumaCyfr=sumaCyfr+a%10;
+        a=Math.floor(a/10);
+    }
+    if(a>9){
+        wynik=czyPodzielnaPrzez3(sumaCyfr);
+    }else{
+        if(sumaCyfr==3 || sumaCyfr==6 || sumaCyfr==9){
+            wynik="TAK";
+        }
+    }
+    return wynik;
+}
