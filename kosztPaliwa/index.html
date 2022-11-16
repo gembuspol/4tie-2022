@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Koszt paliwa</title>
+    <script src="skrypt.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Obliczanie kosztów paliwa</h1>
+    </header>
+    <main>
+        <h3>Podaj dane dotyczące tankowania</h3>
+        <p>Podaj ilośc zatankowanego paliwa <input type="number" id="ilosc"></p>
+        <p>
+            Wybierz rodzaj paliwa 
+            <select id="wyborPaliwa">
+                <option value="benzyna95">Benzyna 95</option>
+                <option value="olej">Olej napędowy</option>
+            </select>
+        </p>
+        <button onclick="oblicz()">Oblicz koszt</button>
+        <p><output id="wynik"></output></p>
+    </main>
+    <footer>
+        <p>Stronę wykonał Przemysław Gembalczyk</p>
+    </footer>
+</body>
+</html>
