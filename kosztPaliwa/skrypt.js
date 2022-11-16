@@ -7,6 +7,5 @@ function oblicz(){
     }else{
         koszt=ilosc*7.10;
     }
-    koszt=Math.round(koszt,2);
     document.getElementById("wynik").value=koszt;
 }
