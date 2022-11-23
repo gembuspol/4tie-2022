@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mistrzostwa</title>
+    <script src="skrypt.js"></script>
+</head>
+<body>
+    <header>Mistrzostwa Świata 2022</header>
+    <main>
+        <p>
+            Podaj wyniki meczów <br><br>
+            Argentyna <input type="number" id="bramka1"> - <input type="number" id="bramka2"> Arabia Saudyjska
+            <br>
+            Polska <input type="number" id="bramka3"> - <input type="number" id="bramka4"> Meksyk
+        </p>
+        <button onclick="oblicz()">Pokaż tabelę</button>
+        <table>
+            <tr>
+                <td>Argentyna</td>
+                <td><output id="punktyArg"></output></td>
+            </tr>
+            <tr>
+                <td>Arabia Saudyjska</td>
+                <td><output id="punktyArb"></output> </td>
+            </tr>
+            <tr>
+                <td>Polska</td>
+                <td><output id="punktyPol"></output></td>
+            </tr>
+            <tr>
+                <td>Meksyk</td>
+                <td><output id="punktyMex"></output></td>
+            </tr>
+        </table>
+    </main>
+    <footer>
+        Stronę wykonał Przemek Gembalczyk
+    </footer>
+</body>
+</html>
