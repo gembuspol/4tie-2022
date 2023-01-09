@@ -35,6 +35,13 @@
                 while($wiersz=mysqli_fetch_array($wynik)){
                     echo $wiersz['imie']." ".$wiersz['nazwisko']."<br>";
                 }
+                $zapytanie2="SELECT * FROM ksiazki";
+                $wynik=mysqli_query($polaczenie,$zapytanie2);
+                echo "<ol>";
+                while($wiersz=mysqli_fetch_array($wynik)){
+                    echo "<li>".$wiersz['tytul']."</li>";
+                }
+                echo "</ol>";
                }
                else
                {
