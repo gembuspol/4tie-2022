@@ -1,0 +1,9 @@
+1. Zmiana kodu tak aby nazwisko i pesel dodawały się do bazy
+2. Zmiana kodu tak aby jak nie będzie wpisany numer Pesel nie rekordu dodawało do bazy
+3. Dodanie w bazie pól w tabeli dane: kod_pocztowy, miejscowosc, ulica, numer
+4. Rozszerzenie formularza o pola kod pocztowy, miejscowosc, ulica i numer
+5. Zmiana kodu tak aby dodawał nowe pola do bazy
+Kamil Kapustka
+Adrian
+Sebastian
+Jakub
