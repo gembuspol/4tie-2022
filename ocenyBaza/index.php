@@ -22,6 +22,7 @@
                 $wynik=mysqli_query($polaczenie,$zapytanie);
                 while($wiersz=mysqli_fetch_array($wynik)){
                     $przedmioty[]= $wiersz['przedmiot'];
+                    $idprzedmiot[]=$wiersz['ID'];
                 }
             }
         ?>
@@ -29,7 +30,7 @@
             <select>
                 <?php
                 for ($x=0;$x<count($przedmioty);$x++){
-                    echo "<option>$przedmioty[$x]</option>";
+                    echo "<option value=$idprzedmiot[$x]>$przedmioty[$x]</option>";
                 }
                     
                 ?>
