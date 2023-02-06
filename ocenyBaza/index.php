@@ -24,6 +24,13 @@
                     $przedmioty[]= $wiersz['przedmiot'];
                     $idprzedmiot[]=$wiersz['ID'];
                 }
+                $zapytanie="SELECT * FROM dane";
+                $wynik=mysqli_query($polaczenie,$zapytanie);
+                while($wiersz=mysqli_fetch_array($wynik)){
+                    $imie[]= $wiersz['imie'];
+                    $nazwisko[]= $wiersz['nazwisko'];
+                    $iddane[]=$wiersz['id'];
+                }
             }
         ?>
         <form method="POST">
@@ -31,6 +38,15 @@
                 <?php
                 for ($x=0;$x<count($przedmioty);$x++){
                     echo "<option value=$idprzedmiot[$x]>$przedmioty[$x]</option>";
+                }
+                    
+                ?>
+            </select>
+            <br>
+            <select>
+                <?php
+                for ($x=0;$x<count($imie);$x++){
+                    echo "<option value=$iddane[$x]>$imie[$x] $nazwisko[$x]</option>";
                 }
                     
                 ?>
