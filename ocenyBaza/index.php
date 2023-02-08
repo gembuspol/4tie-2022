@@ -31,10 +31,24 @@
                     $nazwisko[]= $wiersz['nazwisko'];
                     $iddane[]=$wiersz['id'];
                 }
+                if($_SERVER["REQUEST_METHOD"]=="POST"){
+                    $osoba=$_POST['idosoba'];
+                    $przedmiot=$_POST['idprzedmiot'];
+                    $ocena=$_POST['ocena'];
+                    $insert="INSERT INTO oceny(idosoby,idprzedmiotu,ocena) VALUES('$osoba','$przedmiot','$ocena' )";
+                
+                    if(mysqli_query($polaczenie,$insert)){
+                        echo "Dodano do bazy";
+                    }
+                    else{
+                        echo "Bład";
+                    }
+                }
             }
         ?>
         <form method="POST">
-            <select>
+            <label for="idprzedmiot">Wybierz przedmiot</label>
+            <select name="idprzedmiot">
                 <?php
                 for ($x=0;$x<count($przedmioty);$x++){
                     echo "<option value=$idprzedmiot[$x]>$przedmioty[$x]</option>";
@@ -43,7 +57,8 @@
                 ?>
             </select>
             <br>
-            <select>
+            <label for="idosoba">Wybierz osobę</label>
+            <select name="idosoba">
                 <?php
                 for ($x=0;$x<count($imie);$x++){
                     echo "<option value=$iddane[$x]>$imie[$x] $nazwisko[$x]</option>";
@@ -51,6 +66,12 @@
                     
                 ?>
             </select>
+            <br>
+            <label for="ocena">Podaj ocenę</label>
+            <input type="number" name="ocena">
+            <br>
+            <input type="submit" value="Zapisz do bazy">
+            <output name="wynik"></output>
         </form>
     </main>
     <footer>
