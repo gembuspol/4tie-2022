@@ -25,7 +25,31 @@
                     $nazwisko[]= $wiersz['nazwisko'];
                     $iddane[]=$wiersz['id'];
                 }
+                echo "<br>";
+                if($_SERVER["REQUEST_METHOD"]=="POST"){
+                    $data=$_POST['data'];
+                    $czyObecny=0;
+                    for ($x=0;$x<count($imie);$x++){
+                        if(isset($_POST["osoba$iddane[$x]"])){
+                            $idosoba[$x]=$_POST["osoba$iddane[$x]"];
+                            $czyObecny=1;
+
+                        }
+                        $insert="INSERT INTO obecnosc VALUES(null, '$data','$iddane[$x]','$czyObecny')";
+                        if(mysqli_query($polaczenie,$insert)){
+                            echo "Dodano do bazy";
+                        }
+                        else{
+                            echo "Bład";
+                        }
+                        $czyObecny=0;
+                    }                   
+
+                }
+            
             }
+            mysqli_close($polaczenie);
+
         ?>
         <h2>Lista obecności</h2>
         <form method="POST">
@@ -42,6 +66,11 @@
                     
                 ?>
         </ol>
+        <br>
+        <label for="data">Podaj datę </label>
+        <input type="date" name="data" id="data">
+        <br>
+        <input type="submit" value="Zapisz dane">
         </form>
     </section>
     <footer>Stronę wykonał Przemek</footer>
