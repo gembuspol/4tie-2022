@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 15 Lut 2023, 13:33
+-- Czas generowania: 20 Lut 2023, 11:48
 -- Wersja serwera: 10.4.25-MariaDB
 -- Wersja PHP: 8.1.10
 
@@ -56,6 +56,28 @@ CREATE TABLE `obecnosc` (
   `idosoby` int(11) NOT NULL,
   `obecny` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Zrzut danych tabeli `obecnosc`
+--
+
+INSERT INTO `obecnosc` (`id`, `data`, `idosoby`, `obecny`) VALUES
+(1, '2023-02-14', 1, 1),
+(2, '2023-02-14', 2, 1),
+(3, '2023-02-14', 3, 1),
+(4, '2023-02-14', 4, 1),
+(5, '2023-02-14', 1, 0),
+(6, '2023-02-14', 2, 0),
+(7, '2023-02-14', 3, 1),
+(8, '2023-02-14', 4, 1),
+(9, '2023-02-23', 1, 0),
+(10, '2023-02-23', 2, 1),
+(11, '2023-02-23', 3, 1),
+(12, '2023-02-23', 4, 1),
+(13, '2023-02-06', 1, 1),
+(14, '2023-02-06', 2, 0),
+(15, '2023-02-06', 3, 1),
+(16, '2023-02-06', 4, 0);
 
 -- --------------------------------------------------------
 
@@ -145,7 +167,7 @@ ALTER TABLE `dane`
 -- AUTO_INCREMENT dla tabeli `obecnosc`
 --
 ALTER TABLE `obecnosc`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT dla tabeli `oceny`
