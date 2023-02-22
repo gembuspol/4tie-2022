@@ -31,27 +31,24 @@
                 }
                 echo "<br>";
                 if($_SERVER["REQUEST_METHOD"]=="POST"){
+                    $idnauczyciel=$_POST['nauczyciel'];
+                    $idprzedmiot1=$_POST['idprzedmiot'];
                     $data=$_POST['data'];
-                    $czyObecny=0;
-                    for ($x=0;$x<count($imie);$x++){
-                        if(isset($_POST["osoba$iddane[$x]"])){
-                            $idosoba[$x]=$_POST["osoba$iddane[$x]"];
-                            $czyObecny=1;
-
-                        }
-                        $insert="INSERT INTO obecnosc VALUES(null, '$data','$iddane[$x]','$czyObecny')";
+                    $nrlekcji=$_POST['nrLekcji'];
+                    $temat=$_POST['temat'];
+                   
+                    $insert="INSERT INTO lekcja VALUES(null, '$idprzedmiot1','$idnauczyciel','$data','$nrlekcji','$temat')";
                         if(mysqli_query($polaczenie,$insert)){
                             echo "Dodano do bazy";
                         }
                         else{
                             echo "Bład";
                         }
-                        $czyObecny=0;
                     }                   
 
                 }
             
-            }
+            
             mysqli_close($polaczenie);
 
         ?>
@@ -80,7 +77,22 @@
                 ?>
             </select>
             <br>
+            <label for="data">Wybierz datę</label>
+            <input type="date" name="data" id="data">
+            <br>
+            <label for="nrLekcji">Wybierz numer lekcji</label>
+            <select name="nrLekcji" id="nrLekcji">
+                <?php 
+                   for($nrLekcji=0;$nrLekcji<=13;$nrLekcji++){
+                    echo "<option value=$nrLekcji>$nrLekcji</option>";
+                   } 
+                ?>
             </select>
+            <br>
+            <label for="temat">Podaj temat</label>
+            <input type="text" name="temat" id="temat">
+            <br>
+            <input type="submit" value="zapisz do bazy">
         </form>
 
     </section>
