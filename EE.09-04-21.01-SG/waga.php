@@ -12,14 +12,42 @@
         $connection=mysqli_connect('localhost', 'root','','egzamin');
         if($connection){
             if($_SERVER["REQUEST_METHOD"]=="POST"){
-                if(isset($_POST['waga']) && isset($_POST['wzrost'])){
+                if(empty($_POST['waga']) || empty($_POST['wzrost'])){
+                    $komunikat="";
+                }else{
                     $waga=$_POST['waga'];
                     $wzrost=$_POST['wzrost'];
-                    $bmi=$waga/($wzrost*$wzrost)*10000;
+                    $bmi=($waga/($wzrost*$wzrost))*1000;
                     $komunikat="Twoja waga: $waga ; Twój wzrost: $wzrost <br> BMI wynosi: $bmi";
+                    $bmi_id=0;
+                    if($bmi<19){
+                        $bmi_id=1;
+                    }else if($bmi<26){
+                        $bmi_id=2;
+                    }else if($bmi<31){
+                        $bmi_id=3;
+                    }else{
+                        $bmi_id=4;
+                    }
+                    $data=date("Y-m-d");
+                    $insert="INSERT INTO wynik VALUES(null,$bmi_id,'$data',$bmi)";
+                    if(mysqli_query($connection,$insert)){
+                        echo "Dodano do bazy";
+                    }else{
+                        echo "Błąd dodawania";
+                    }
                 }
-                
             }
+                    $zapytanie="SELECT id, informacja, wart_min FROM bmi";
+                    $wynik=mysqli_query($connection,$zapytanie);
+                    while($wiersz=mysqli_fetch_array($wynik)){
+                        $id[]=$wiersz["id"];
+                        $informacja[]=$wiersz["informacja"];
+                        $min[]=$wiersz["wart_min"];
+                    }
+                
+                
+            
         }else{
             echo "Brak połączenia";
         }
@@ -45,7 +73,10 @@
             <input type="submit" value="Licz BMI i zapisz wynik">
             <br>
             <?php
-            echo $komunikat;
+            if(isset($komunikat)){
+                echo $komunikat;
+            }
+            
             ?>
         </form>
 
@@ -61,6 +92,14 @@
             </thead>
             <tbody>
                 <?php
+                for($x=0;$x<count($id);$x++){
+                    echo "<tr>";
+                    echo "<th>$id[$x] </th>";
+                    echo "<td>$informacja[$x] </td>";
+                    echo "<td>$min[$x] </td>";
+                    echo "</tr>";
+                }
+                    
 
                 ?>
             </tbody>
