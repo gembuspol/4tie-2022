@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Działania matematyczne</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function dodaj(){
+            let a=document.getElementById("liczbaA").value;
+            let b=document.getElementById("liczbaB").value;
+            
+            a=parseFloat(a);
+            b=parseFloat(b);
+          
+            let wynik=a+b;
+            document.getElementById("wynik").value="Wynik: "+wynik;
+
+        }
+    </script>
+</head>
+<body>
+    <section class="baner1">
+        <img src="logo.jpg" alt="matematyka">
+    </section>
+    <section class="baner2">
+        <h1>Pomocnik matematyczny</h1>
+    </section>
+    <section class="baner3">
+        <a href="dzialania.html"><h4>Działania</h4></a>
+    </section>
+    <section class="baner4">
+        <a href="mnozenie.html"><h4>Tabliczka mnożenia</h4></a>
+    </section>
+    <section class="prawy">
+        <ul>
+            
+            <li>dodawnaie</li>
+            <li>odejmowanie</li>
+            <li>mnożenie</li>
+            <li>dzielenie</li>
+            <li>potęgowanie</li>
+        </ul>
+    </section>
+    <section class="lewy">
+        <h3>Proste działania</h3>
+        <label for="liczbaA">liczba A:</label>
+        <input type="number" name="liczbaA" id="liczbaA">
+        <br>
+        <label for="liczbaB">liczba B:</label>
+        <input type="number" name="liczbaB" id="liczbaB">
+        <br>
+        <input type="button" onclick="dodaj()" class="przycisk" value="+">
+        <input type="button" onclick="odejmij()" class="przycisk" value="-">
+        <input type="button" onclick="mnozenie()" class="przycisk" value="*">
+        <input type="button" onclick="dzielenie()" class="przycisk" value="*">
+        <input type="button" onclick="potegowanie()" class="przycisk" value="A^B">
+        <output name="wynik" id="wynik"></output>
+
+    </section>
+    <footer>
+        <p>Autor: Przemek</p>
+    </footer>
+</body>
+</html>
