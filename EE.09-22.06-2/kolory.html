@@ -25,9 +25,9 @@
     <h2>Podaj składową H koloru w kodzie HSL</h2>
         <p>0 do 30 czerwienie, do 60 żółcie, do 150 zielenie, do 250 niebieskie, do 360 fiolet i purpura</p>
         <img src="kolory.jpg" alt="Przestrzeń barw HSL"><br>
-        <input type="number" max="360" placeholder="0 - 360"/>
-        <input type="submit" value="Generuj paletę">
-        <table>
+        <input type="number" max="360" placeholder="0 - 360" id="hsl">
+        <input type="submit" value="Generuj paletę" onclick="guzik()">
+        <table id="tabela">
 			<tr>
 				<td id="1" colspan="4">Kolor główny</td>
 			</tr>
@@ -38,6 +38,13 @@
 				<td id="5">kolor 5</td>
 			</tr>
 		</table>
+        <script>
+            function guzik(){
+                let wartosc=document.getElementById("hsl").value;
+                const tabela=document.getElementById("tabela");
+                tabela.rows[0].cells[0].style.background= 'hsl('+wartosc+',100%,50%)';
+            }
+        </script>
 </section>
 <footer>
 <p>Autor Kamil Karnafał#6969</p>

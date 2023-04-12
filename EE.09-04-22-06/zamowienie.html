@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styl4.css">
+    <script>
+    </script>
+    <title>Zamówienie hurtowne</title>
+</head>
+<body onload="braki()">
+    <header class="baner">
+        <h1>Sieci komputerowe</h1>
+    </header>
+    <main>
+        <section class="lewa">
+            <h2>Aktualizajca i zamówwienia materiałów</h2>
+            <p>Do wewnętrznego użytku firmy</p>
+            <img src="obraz.jpg" alt="sieć komputerowa">
+        </section>
+        <section class="prawa">
+            <table id="table">
+                <thead>
+                    <tr>
+                        <th>Produkt</th>
+                        <th>Jednostka</th>
+                        <th>dostępna ilość</th>
+                        <th>Aktualizajca</th>
+                        <th>Zamówienie</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Skrętka u/utp drut</td>
+                        <td>metr</td>
+                        <td id="jeden">0</td>
+                        <td><button onclick="aktu1()">Aktualizuj</button></td>
+                        <td><button onclick="Zamow1()">Zamów</button></td>
+                    </tr>
+                    <tr><td>Skrętka u/utp linka</td>
+                        <td>metr</td>
+                        <td>2</td>
+                        <td><button onclick="aktu2()">Aktualizuj</button></td>
+                        <td><button onclick="Zamow2()">Zamów</button></td></tr>
+                    <tr>
+                        <td>Wtyki 8P8C</td>
+                        <td>sztuki</td>
+                        <td>10</td>
+                        <td><button onclick="aktu3()">Aktualizuj</button></td>
+                        <td><button onclick="Zamow3()">Zamów</button></td></tr>
+                    <tr>
+                        <td>Moduły keystone</td>
+                        <td>sztuki</td>
+                        <td>30</td>
+                        <td><button onclick="aktu4()">Aktualizuj</button></td>
+                        <td><button onclick="Zamow4()">Zamów</button></td></tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <footer class="stopka">
+        <a href="http://sieci.pl" target="_blank">Nasza strona internetowa</a>
+        <p>Stronę przygotował: 000000000000</p>
+    </footer>
+    <script>
+        function braki(){
+            /** sprawdzanie ile jest wierszy--
+                let wiersze=document.getElementById("table").rows[0].cells.length;
+                **/
+            const tabela=document.getElementById("table");
+            if(tabela.rows[1].cells[2].innerText == 0){
+                tabela.rows[1].cells[2].style.background = "red";
+            }
+            if(tabela.rows[2].cells[2].innerText == 0){
+                tabela.rows[2].cells[2].style.background = "red";
+            }
+            if(tabela.rows[3].cells[2].innerText == 0){
+                tabela.rows[3].cells[2].style.background = "red";
+            }
+            if(tabela.rows[4].cells[2].innerText == 0){
+                tabela.rows[4].cells[2].style.background = "red";
+            }
+            if(tabela.rows[1].cells[2].innerText > 0 && tabela.rows[1].cells[2].innerText<=5){
+                tabela.rows[1].cells[2].style.background = "yellow";
+            }
+            if(tabela.rows[2].cells[2].innerText > 0 && tabela.rows[2].cells[2].innerText<=5){
+                tabela.rows[2].cells[2].style.background = "yellow";
+            }
+            if(tabela.rows[3].cells[2].innerText > 0 && tabela.rows[3].cells[2].innerText<=5){
+                tabela.rows[3].cells[2].style.background = "yellow";
+            }
+            if(tabela.rows[4].cells[2].innerText > 0 && tabela.rows[4].cells[2].innerText<=5){
+                tabela.rows[4].cells[2].style.background = "yellow";
+            }
+
+        }
+        function aktu1(){
+            ilosc=prompt("Podaj nową ilość");
+            document.getElementById("jeden").value=ilosc;
+        }
+    </script>
+</body>
+</html>
