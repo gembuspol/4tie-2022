@@ -198,10 +198,12 @@ def main():
                 continue
 
         if len(enemies) == 0:
-            kolor=TLO_Y
-            OKNO.blit(kolor, (0,0))
-            pygame.display.update()
+            
             level += 1
+            if level>2:
+                kolor=TLO
+                OKNO.blit(kolor, (0,0))
+                pygame.display.update()
             wave_length += 5
             for i in range(wave_length):
                 enemy = Wrog(random.randrange(50, WIDTH-100), random.randrange(-1500, -100), random.choice(["red", "blue", "green"]))
@@ -235,8 +237,8 @@ def main():
 
 
         mx,my=pygame.mouse.get_pos()
-        player.x=mx
-        player.y=my
+        player.x=mx-50
+        player.y=my-45
        
 
         for enemy in enemies[:]:
