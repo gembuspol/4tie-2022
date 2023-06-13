@@ -10,6 +10,7 @@ OKNO = pygame.display.set_mode((WIDTH, HEIGHT))
 Statek1P = pygame.image.load(os.path.join("assets", "obcy_level_1.png"))
 Statek2P = pygame.image.load(os.path.join("assets", "obcy_level_2.png"))
 Statek3P = pygame.image.load(os.path.join("assets", "obcy_level_3.png"))
+APTECZKA = pygame.image.load(os.path.join("assets", "apteczka.png"))
 
 # Player player
 YELLOW_SPACE_SHIP = pygame.image.load(os.path.join("assets", "Gracz.png"))
@@ -96,6 +97,33 @@ class Statek:
     def get_height(self):
         return self.ship_img.get_height()
 
+class Apteczka:
+    COOLDOWN = 30
+
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+        self.ship_img = APTECZKA
+        self.mask = pygame.mask.from_surface(self.ship_img)
+        self.cool_down_counter = 0
+        self.level=1
+
+    def draw(self, window):
+        window.blit(self.ship_img, (self.x, self.y))
+
+    def cooldown(self):
+        if self.cool_down_counter >= self.COOLDOWN:
+            self.cool_down_counter = 0
+        elif self.cool_down_counter > 0:
+            self.cool_down_counter += 1
+
+    def get_width(self):
+        return self.ship_img.get_width()
+
+    def get_height(self):
+        return self.ship_img.get_height()
+    def move(self, vel):
+        self.y += vel
 
 class Gracz(Statek):
     def __init__(self, x, y, health=100):
@@ -178,7 +206,9 @@ def main():
 
     enemies = []
     wave_length = 5
+    liczb_apteczek=2
     enemy_vel = 1
+    apt=[]
 
     player_vel = 5
     laser_vel = 5
@@ -201,6 +231,9 @@ def main():
 
         for enemy in enemies:
             enemy.draw(OKNO)
+        for zycie in apt:
+            zycie.draw(OKNO)
+          
 
         player.draw(OKNO)
 
@@ -236,9 +269,14 @@ def main():
                 OKNO.blit(kolor, (0,0))
                 pygame.display.update()
             wave_length += 5
+            liczb_apteczek+=3
             for i in range(wave_length):
                 enemy = Wrog(random.randrange(50, WIDTH-100), random.randrange(-1500, -100), random.choice(["red", "blue", "green"]))
                 enemies.append(enemy)
+
+            for i in range(liczb_apteczek):
+                apte=Apteczka(random.randrange(50, WIDTH-100), random.randrange(-1500, -100))
+                apt.append(apte)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -286,7 +324,11 @@ def main():
             elif enemy.y + enemy.get_height() > HEIGHT:
                 lives -= 1
                 enemies.remove(enemy)
-
+        for i in apt:
+            i.move(enemy_vel)
+            if trafienie(i, player):
+                player.health += 10
+                apt.remove(i)
         player.move_lasers(-laser_vel, enemies)
 
 
