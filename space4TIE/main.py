@@ -20,6 +20,7 @@ GREEN_LASER = pygame.image.load(os.path.join("assets", "pixel_laser_green.png"))
 BLUE_LASER = pygame.image.load(os.path.join("assets", "pixel_laser_blue.png"))
 YELLOW_LASER = pygame.image.load(os.path.join("assets", "pixel_laser_yellow.png"))
 TLO = pygame.transform.scale(pygame.image.load(os.path.join("assets", "background-black.png")), (WIDTH, HEIGHT))
+TLO_Y = pygame.transform.scale(pygame.image.load(os.path.join("assets", "background-yellow.png")), (WIDTH, HEIGHT))
 
 class Laser:
     def __init__(self,x,y,img):
@@ -161,8 +162,8 @@ def main():
     lost = False
     lost_count = 0
 
-    def redraw_window():
-        OKNO.blit(TLO, (0,0))
+    def redraw_window(kolor):
+        OKNO.blit(kolor, (0,0))
         # draw text
         lives_label = main_font.render(f"Lives: {lives}", 1, (255,255,255))
         level_label = main_font.render(f"Level: {level}", 1, (255,255,255))
@@ -180,10 +181,11 @@ def main():
             OKNO.blit(lost_label, (WIDTH/2 - lost_label.get_width()/2, 350))
 
         pygame.display.update()
-
+    kolor=TLO_Y
     while run:
+        
         clock.tick(FPS)
-        redraw_window()
+        redraw_window(kolor)
 
         if lives <= 0 or player.health <= 0:
             lost = True
@@ -196,6 +198,9 @@ def main():
                 continue
 
         if len(enemies) == 0:
+            kolor=TLO_Y
+            OKNO.blit(kolor, (0,0))
+            pygame.display.update()
             level += 1
             wave_length += 5
             for i in range(wave_length):
