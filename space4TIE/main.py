@@ -48,6 +48,7 @@ class Statek:
         self.laser_img = None
         self.lasers = []
         self.cool_down_counter = 0
+        self.level=1
 
     def draw(self, window):
         window.blit(self.ship_img, (self.x, self.y))
@@ -72,8 +73,21 @@ class Statek:
 
     def shoot(self):
         if self.cool_down_counter == 0:
-            laser = Laser(self.x, self.y, self.laser_img)
-            self.lasers.append(laser)
+            if self.level==1:
+                laser = Laser(self.x, self.y, self.laser_img)
+                self.lasers.append(laser)
+            if self.level==2:
+                laser = Laser(self.x+20, self.y, self.laser_img)
+                self.lasers.append(laser)   
+                laser = Laser(self.x-20, self.y, self.laser_img)
+                self.lasers.append(laser)  
+            if self.level==3:
+                laser = Laser(self.x+20, self.y, self.laser_img)
+                self.lasers.append(laser)   
+                laser = Laser(self.x, self.y, self.laser_img)
+                self.lasers.append(laser)
+                laser = Laser(self.x-20, self.y, self.laser_img)
+                self.lasers.append(laser)  
             self.cool_down_counter = 1
 
     def get_width(self):
@@ -124,14 +138,28 @@ class Wrog(Statek):
         super().__init__(x, y, health)
         self.ship_img, self.laser_img = self.COLOR_MAP[color]
         self.mask = pygame.mask.from_surface(self.ship_img)
+        self.color=color
 
     def move(self, vel):
         self.y += vel
 
     def shoot(self):
         if self.cool_down_counter == 0:
-            laser = Laser(self.x-20, self.y, self.laser_img)
-            self.lasers.append(laser)
+            if self.color=="red":
+                laser = Laser(self.x-20, self.y, self.laser_img)
+                self.lasers.append(laser)
+            if self.color=="green":
+                laser = Laser(self.x, self.y, self.laser_img)
+                self.lasers.append(laser)
+                laser = Laser(self.x-40, self.y, self.laser_img)
+                self.lasers.append(laser)
+            if self.color=="blue":
+                laser = Laser(self.x-20, self.y, self.laser_img)
+                self.lasers.append(laser)
+                laser = Laser(self.x-40, self.y, self.laser_img)
+                self.lasers.append(laser)
+                laser = Laser(self.x, self.y, self.laser_img)
+                self.lasers.append(laser)
             self.cool_down_counter = 1
 
 
@@ -200,7 +228,10 @@ def main():
         if len(enemies) == 0:
             
             level += 1
+            if level==2:
+                player.level=2
             if level>2:
+                player.level=3
                 kolor=TLO
                 OKNO.blit(kolor, (0,0))
                 pygame.display.update()
@@ -239,6 +270,7 @@ def main():
         mx,my=pygame.mouse.get_pos()
         player.x=mx-50
         player.y=my-45
+        pygame.mouse.set_visible(False)
        
 
         for enemy in enemies[:]:
